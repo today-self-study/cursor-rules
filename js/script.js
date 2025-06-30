@@ -1,22 +1,25 @@
 document.addEventListener('DOMContentLoaded', () => {
     const rulesContainer = document.getElementById('rules-container');
-    // For GitHub Pages, we list the files manually since there's no server-side directory listing.
+    const repoName = 'cursor-rules'; // Your repository name
+
     const ruleFiles = [
-        'rules/standard-commit.md',
-        'rules/code-cleaner.md',
-        'rules/bug-fix-workflow.md',
-        'rules/pr-review.md',
-        'rules/implement-task.md',
-        'rules/code-analysis.md',
-        'rules/create-docs.md'
+        'standard-commit.md',
+        'code-cleaner.md',
+        'bug-fix-workflow.md',
+        'pr-review.md',
+        'implement-task.md',
+        'code-analysis.md',
+        'create-docs.md'
     ];
 
     const fetchAndDisplayRules = async () => {
         for (const file of ruleFiles) {
+            // Construct the full path for GitHub Pages
+            const filePath = `/${repoName}/rules/${file}`;
             try {
-                const response = await fetch(file);
+                const response = await fetch(filePath);
                 if (!response.ok) {
-                    throw new Error(`Failed to fetch ${file}`);
+                    throw new Error(`Failed to fetch ${filePath} (status: ${response.status})`);
                 }
                 const text = await response.text();
                 const rule = parseRule(text);
