@@ -1,0 +1,123 @@
+:root {
+    --primary-color: #4a4a4a;
+    --secondary-color: #f5f5f5;
+    --background-color: #ffffff;
+    --accent-color: #007aff;
+    --text-color: #333;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    font-weight: 700;
+}
+
+header p {
+    margin-top: 10px;
+    font-size: 1.1em;
+    font-weight: 300;
+}
+
+main {
+    padding: 40px 0;
+}
+
+#rules-container {
+    display: grid;
+    gap: 30px;
+}
+
+.rule-card {
+    background-color: var(--secondary-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+}
+
+.rule-card:hover {
+    transform: translateY(-5px);
+}
+
+.rule-card-header {
+    padding: 20px;
+}
+
+.rule-card h2 {
+    margin: 0 0 10px 0;
+    font-size: 1.5em;
+    color: var(--primary-color);
+}
+
+.rule-card p {
+    margin: 0;
+    font-size: 1em;
+    color: #666;
+}
+
+.rule-content {
+    background-color: #2d2d2d;
+    color: #f1f1f1;
+    padding: 20px;
+    position: relative;
+}
+
+.rule-content pre {
+    margin: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: 'SF Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
+}
+
+.copy-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.copy-btn:hover {
+    background-color: #0056b3;
+}
+
+.copy-btn.copied {
+    background-color: #28a745;
+}
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+    border-top: 1px solid #e0e0e0;
+    color: #888;
+} 
