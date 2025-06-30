@@ -4,7 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const ruleFiles = [
         'rules/standard-commit.md',
         'rules/code-cleaner.md',
-        'rules/bug-fix-workflow.md'
+        'rules/bug-fix-workflow.md',
+        'rules/pr-review.md',
+        'rules/implement-task.md',
+        'rules/code-analysis.md',
+        'rules/create-docs.md'
     ];
 
     const fetchAndDisplayRules = async () => {
