@@ -11,13 +11,21 @@ document.addEventListener('DOMContentLoaded', () => {
         'rules/create-docs.md'
     ];
 
+    const getBaseUrl = () => {
+        const pathArray = window.location.pathname.split('/').slice(0, -1);
+        return window.location.origin + pathArray.join('/');
+    };
+    
+    const baseUrl = getBaseUrl();
+
     const fetchAndDisplayRules = async () => {
         for (const file of ruleFiles) {
             try {
-                // Use a path relative to the index.html file
-                const response = await fetch(file);
+                // Dynamically construct the full URL
+                const fileUrl = `${baseUrl}/${file}`;
+                const response = await fetch(fileUrl);
                 if (!response.ok) {
-                    throw new Error(`Failed to fetch ${file} (status: ${response.status})`);
+                    throw new Error(`Failed to fetch ${fileUrl} (status: ${response.status})`);
                 }
                 const text = await response.text();
                 const rule = parseRule(text);
