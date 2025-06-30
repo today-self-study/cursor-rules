@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const rulesContainer = document.getElementById('rules-container');
+    const owner = 'today-self-study';
+    const repo = 'cursor-rules';
 
     const ruleFiles = [
         'rules/standard-commit.md',
@@ -11,27 +13,26 @@ document.addEventListener('DOMContentLoaded', () => {
         'rules/create-docs.md'
     ];
 
-    const getBaseUrl = () => {
-        const pathArray = window.location.pathname.split('/').slice(0, -1);
-        return window.location.origin + pathArray.join('/');
-    };
-    
-    const baseUrl = getBaseUrl();
-
     const fetchAndDisplayRules = async () => {
-        for (const file of ruleFiles) {
+        for (const filePath of ruleFiles) {
+            // Construct the GitHub API URL
+            const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`;
+            
             try {
-                // Dynamically construct the full URL
-                const fileUrl = `${baseUrl}/${file}`;
-                const response = await fetch(fileUrl);
+                const response = await fetch(apiUrl);
                 if (!response.ok) {
-                    throw new Error(`Failed to fetch ${fileUrl} (status: ${response.status})`);
+                    throw new Error(`Failed to fetch from GitHub API: ${apiUrl} (status: ${response.status})`);
                 }
-                const text = await response.text();
-                const rule = parseRule(text);
+                const data = await response.json();
+                
+                // Decode the content from Base64.
+                // This handles UTF-8 characters correctly.
+                const decodedContent = decodeURIComponent(escape(window.atob(data.content)));
+
+                const rule = parseRule(decodedContent);
                 displayRule(rule);
             } catch (error) {
-                console.error('Error loading rule:', error);
+                console.error('Error loading rule via GitHub API:', error);
             }
         }
     };
