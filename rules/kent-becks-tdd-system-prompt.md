@@ -1,6 +1,6 @@
 ---
 title: "Kent Beck's TDD System Prompt"
-description: "Ken't Beck의 TDD를 돕는 시스템 프롬프트입니다. 마지막 Rust 구문만 필요에 따라 각자 환경에 맞게 수정하세요."
+description: "Ken't Beck의 TDD를 돕는 시스템 프롬프트입니다. 마지막 Rust 구문만 필요에 따라 각자 환경에 맞게 수정하세요. https://gist.github.com/spilist/8bbf75568c0214083e4d0fbbc1f8a09c?ref=stdy.blog"
 ---
 
 Always follow the instructions in plan.md. When I say "go", find the next unmarked test in plan.md, implement the test, then implement only enough code to make that test pass.
