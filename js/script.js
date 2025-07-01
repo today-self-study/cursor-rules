@@ -11,25 +11,23 @@ document.addEventListener('DOMContentLoaded', () => {
         'rules/implement-task.md',
         'rules/code-analysis.md',
         'rules/create-docs.md',
-        'rules/kent-becks-tdd-system-prompt.md',
+        'rules/kent-becks-tdd-system-prompt.md'
     ];
+
+    function base64ToUtf8(str) {
+        return new TextDecoder('utf-8').decode(Uint8Array.from(atob(str), c => c.charCodeAt(0)));
+    }
 
     const fetchAndDisplayRules = async () => {
         for (const filePath of ruleFiles) {
-            // Construct the GitHub API URL
             const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`;
-            
             try {
                 const response = await fetch(apiUrl);
                 if (!response.ok) {
                     throw new Error(`Failed to fetch from GitHub API: ${apiUrl} (status: ${response.status})`);
                 }
                 const data = await response.json();
-                
-                // Decode the content from Base64.
-                // This handles UTF-8 characters correctly.
-                const decodedContent = decodeURIComponent(escape(window.atob(data.content)));
-
+                const decodedContent = base64ToUtf8(data.content);
                 const rule = parseRule(decodedContent);
                 displayRule(rule);
             } catch (error) {
