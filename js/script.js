@@ -1,8 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     const rulesContainer = document.getElementById('rules-container');
-    const owner = 'today-self-study';
-    const repo = 'cursor-rules';
-
     const ruleFiles = [
         'rules/standard-commit.md',
         'rules/code-cleaner.md',
@@ -14,24 +11,16 @@ document.addEventListener('DOMContentLoaded', () => {
         'rules/kent-becks-tdd-system-prompt.md'
     ];
 
-    function base64ToUtf8(str) {
-        return new TextDecoder('utf-8').decode(Uint8Array.from(atob(str), c => c.charCodeAt(0)));
-    }
-
     const fetchAndDisplayRules = async () => {
-        for (const filePath of ruleFiles) {
-            const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`;
+        for (const file of ruleFiles) {
             try {
-                const response = await fetch(apiUrl);
-                if (!response.ok) {
-                    throw new Error(`Failed to fetch from GitHub API: ${apiUrl} (status: ${response.status})`);
-                }
-                const data = await response.json();
-                const decodedContent = base64ToUtf8(data.content);
-                const rule = parseRule(decodedContent);
+                const response = await fetch(file);
+                if (!response.ok) throw new Error(`Failed to fetch ${file}`);
+                const text = await response.text();
+                const rule = parseRule(text);
                 displayRule(rule);
             } catch (error) {
-                console.error('Error loading rule via GitHub API:', error);
+                console.error('Error loading rule:', error);
             }
         }
     };
@@ -39,7 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const parseRule = (text) => {
         const frontmatterMatch = text.match(/---([\s\S]*?)---/);
         const content = text.replace(/---[\s\S]*?---/, '').trim();
-        
         const rule = { content };
         if (frontmatterMatch) {
             const frontmatter = frontmatterMatch[1];
@@ -55,22 +43,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const card = document.createElement('div');
         card.className = 'rule-card';
 
-        const header = document.createElement('div');
-        header.className = 'rule-card-header';
-        
         const title = document.createElement('h2');
         title.textContent = rule.title || 'Untitled Rule';
-        header.appendChild(title);
+        card.appendChild(title);
 
         if (rule.description) {
             const description = document.createElement('p');
             description.textContent = rule.description;
-            header.appendChild(description);
+            card.appendChild(description);
         }
 
         const contentWrapper = document.createElement('div');
         contentWrapper.className = 'rule-content';
-        
+
         const pre = document.createElement('pre');
         const code = document.createElement('code');
         code.textContent = rule.content;
@@ -91,8 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
         contentWrapper.appendChild(copyBtn);
-        
-        card.appendChild(header);
+
         card.appendChild(contentWrapper);
         rulesContainer.appendChild(card);
     };
