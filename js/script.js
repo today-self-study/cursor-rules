@@ -10,7 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
         'rules/pr-review.md',
         'rules/implement-task.md',
         'rules/code-analysis.md',
-        'rules/create-docs.md'
+        'rules/create-docs.md',
+        'rules/kent-becks-tdd-system-prompt.md',
     ];
 
     const fetchAndDisplayRules = async () => {
