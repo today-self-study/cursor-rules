@@ -98,21 +98,44 @@ main {
     background: #181818;
     border-radius: 7px;
     padding: 0.9rem 0.8rem;
-    font-size: 0.88rem;
-    line-height: 1.45;
+    font-size: 0.80rem;
+    line-height: 1.38;
     color: #e0e0e0;
     font-family: 'Fira Mono', monospace;
     overflow-x: auto;
     margin-bottom: 0.5rem;
     border: 1px solid #232323;
+    scrollbar-width: thin;
+    scrollbar-color: #444 #232323;
 }
 
 .rule-content pre, .rule-content code {
     white-space: pre;
     word-break: normal;
     overflow-x: auto;
-    font-size: 0.88rem;
-    line-height: 1.45;
+    font-size: 0.80rem;
+    line-height: 1.38;
+    scrollbar-width: thin;
+    scrollbar-color: #444 #232323;
+}
+
+.rule-content pre::-webkit-scrollbar,
+.rule-content code::-webkit-scrollbar {
+    height: 8px;
+    background: #232323;
+    border-radius: 6px;
+}
+
+.rule-content pre::-webkit-scrollbar-thumb,
+.rule-content code::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+
+.rule-content pre::-webkit-scrollbar-thumb:hover,
+.rule-content code::-webkit-scrollbar-thumb:hover {
+    background: #888;
 }
 
 .copy-btn {
