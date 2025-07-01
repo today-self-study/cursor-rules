@@ -1,43 +1,33 @@
-:root {
-    --primary-color: #4a4a4a;
-    --secondary-color: #f5f5f5;
-    --background-color: #ffffff;
-    --accent-color: #007aff;
-    --text-color: #333;
-    --border-radius: 8px;
-    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700&display=swap');
 
 body {
-    font-family: 'Noto Sans KR', sans-serif;
-    background: #f8f9fa;
+    background: #181818;
+    color: #eee;
+    font-family: 'Fira Mono', 'Noto Sans KR', 'Menlo', 'Consolas', monospace;
     margin: 0;
-    color: #222;
-}
-
-.container {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 0 20px;
+    min-height: 100vh;
 }
 
 header {
-    background: #343a40;
-    color: #fff;
-    padding: 2rem 0 1rem 0;
     text-align: center;
+    padding: 2.5rem 0 1.2rem 0;
+    border-bottom: 1px solid #222;
+    margin-bottom: 2rem;
 }
 
 header h1 {
-    margin: 0;
-    font-size: 2.2rem;
+    font-size: 2.3rem;
     font-weight: 700;
+    color: #fff;
+    margin: 0 0 0.3rem 0;
+    letter-spacing: 0.04em;
 }
 
 header p {
-    margin: 0.5rem 0 0 0;
-    font-size: 1.1rem;
-    font-weight: 400;
+    color: #aaa;
+    font-size: 1.05rem;
+    margin: 0;
+    font-family: 'Noto Sans KR', monospace;
 }
 
 main {
@@ -49,7 +39,7 @@ main {
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;
     max-width: 1100px;
-    margin: 2rem auto;
+    margin: 0 auto 2.5rem auto;
     padding: 0 1rem;
 }
 
@@ -60,70 +50,83 @@ main {
 }
 
 .rule-card {
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
-    padding: 1.5rem 1.2rem 1.2rem 1.2rem;
+    background: #222;
+    border: 1px solid #333;
+    border-radius: 10px;
+    box-shadow: none;
+    padding: 1.2rem 1.1rem 1.1rem 1.1rem;
     display: flex;
     flex-direction: column;
     min-width: 0;
     min-height: 0;
-    transition: box-shadow 0.2s;
+    transition: box-shadow 0.18s, border-color 0.18s;
 }
 
 .rule-card:hover {
-    box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+    border-color: #444;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.18);
 }
 
 .rule-card h2 {
     margin: 0 0 0.5rem 0;
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #0070f3;
+    font-size: 1.13rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.01em;
 }
 
 .rule-card p {
     margin: 0 0 1rem 0;
-    color: #555;
-    font-size: 1rem;
+    color: #bbb;
+    font-size: 0.98rem;
+    font-family: 'Noto Sans KR', monospace;
 }
 
 .rule-content {
-    background: #f6f8fa;
-    border-radius: 8px;
-    padding: 1rem;
-    font-size: 0.98rem;
+    background: #181818;
+    border-radius: 7px;
+    padding: 0.9rem 0.8rem;
+    font-size: 0.97rem;
+    color: #e0e0e0;
+    font-family: 'Fira Mono', monospace;
     overflow-x: auto;
     margin-bottom: 0.5rem;
+    border: 1px solid #232323;
 }
 
 .rule-content pre {
     margin: 0;
-    font-family: 'Fira Mono', 'Menlo', 'Consolas', monospace;
+    font-family: 'Fira Mono', monospace;
     white-space: pre-wrap;
     word-break: break-all;
+    font-size: 0.97rem;
+    color: #e0e0e0;
+    background: none;
 }
 
 .copy-btn {
     align-self: flex-end;
-    background: #0070f3;
-    color: #fff;
-    border: none;
+    background: transparent;
+    color: #aaa;
+    border: 1px solid #333;
     border-radius: 5px;
-    padding: 0.4rem 1.1rem;
-    font-size: 0.98rem;
+    padding: 0.32rem 1.1rem;
+    font-size: 0.97rem;
     cursor: pointer;
     margin-top: 0.5rem;
-    transition: background 0.2s;
+    transition: background 0.18s, color 0.18s, border-color 0.18s;
 }
 
 .copy-btn:hover, .copy-btn.copied {
-    background: #0056b3;
+    background: #333;
+    color: #fff;
+    border-color: #555;
 }
 
 footer {
     text-align: center;
-    color: #888;
-    font-size: 0.95rem;
-    margin: 2rem 0 1rem 0;
+    color: #666;
+    font-size: 0.93rem;
+    margin: 2.5rem 0 1.2rem 0;
+    letter-spacing: 0.01em;
 } 
