@@ -43,9 +43,30 @@ document.addEventListener('DOMContentLoaded', () => {
         const card = document.createElement('div');
         card.className = 'rule-card';
 
+        // 카드 헤더(제목+Copy 버튼) flex row
+        const header = document.createElement('div');
+        header.className = 'rule-card-header';
+
         const title = document.createElement('h2');
         title.textContent = rule.title || 'Untitled Rule';
-        card.appendChild(title);
+
+        const copyBtn = document.createElement('button');
+        copyBtn.className = 'copy-btn';
+        copyBtn.textContent = 'Copy';
+        copyBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(rule.content).then(() => {
+                copyBtn.textContent = 'Copied!';
+                copyBtn.classList.add('copied');
+                setTimeout(() => {
+                    copyBtn.textContent = 'Copy';
+                    copyBtn.classList.remove('copied');
+                }, 2000);
+            });
+        });
+
+        header.appendChild(title);
+        header.appendChild(copyBtn);
+        card.appendChild(header);
 
         if (rule.description) {
             const description = document.createElement('p');
@@ -61,21 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
         code.textContent = rule.content;
         pre.appendChild(code);
         contentWrapper.appendChild(pre);
-
-        const copyBtn = document.createElement('button');
-        copyBtn.className = 'copy-btn';
-        copyBtn.textContent = 'Copy';
-        copyBtn.addEventListener('click', () => {
-            navigator.clipboard.writeText(rule.content).then(() => {
-                copyBtn.textContent = 'Copied!';
-                copyBtn.classList.add('copied');
-                setTimeout(() => {
-                    copyBtn.textContent = 'Copy';
-                    copyBtn.classList.remove('copied');
-                }, 2000);
-            });
-        });
-        contentWrapper.appendChild(copyBtn);
 
         card.appendChild(contentWrapper);
         rulesContainer.appendChild(card);
