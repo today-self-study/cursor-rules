@@ -10,10 +10,9 @@
 
 body {
     font-family: 'Noto Sans KR', sans-serif;
+    background: #f8f9fa;
     margin: 0;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    line-height: 1.6;
+    color: #222;
 }
 
 .container {
@@ -23,22 +22,22 @@ body {
 }
 
 header {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 40px 0;
+    background: #343a40;
+    color: #fff;
+    padding: 2rem 0 1rem 0;
     text-align: center;
 }
 
 header h1 {
     margin: 0;
-    font-size: 2.5em;
+    font-size: 2.2rem;
     font-weight: 700;
 }
 
 header p {
-    margin-top: 10px;
-    font-size: 1.1em;
-    font-weight: 300;
+    margin: 0.5rem 0 0 0;
+    font-size: 1.1rem;
+    font-weight: 400;
 }
 
 main {
@@ -47,77 +46,84 @@ main {
 
 #rules-container {
     display: grid;
-    gap: 30px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+@media (max-width: 700px) {
+    #rules-container {
+        grid-template-columns: 1fr;
+    }
 }
 
 .rule-card {
-    background-color: var(--secondary-color);
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    overflow: hidden;
-    transition: transform 0.2s ease-in-out;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    padding: 1.5rem 1.2rem 1.2rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+    transition: box-shadow 0.2s;
 }
 
 .rule-card:hover {
-    transform: translateY(-5px);
-}
-
-.rule-card-header {
-    padding: 20px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.13);
 }
 
 .rule-card h2 {
-    margin: 0 0 10px 0;
-    font-size: 1.5em;
-    color: var(--primary-color);
+    margin: 0 0 0.5rem 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #0070f3;
 }
 
 .rule-card p {
-    margin: 0;
-    font-size: 1em;
-    color: #666;
+    margin: 0 0 1rem 0;
+    color: #555;
+    font-size: 1rem;
 }
 
 .rule-content {
-    background-color: #2d2d2d;
-    color: #f1f1f1;
-    padding: 20px;
-    position: relative;
+    background: #f6f8fa;
+    border-radius: 8px;
+    padding: 1rem;
+    font-size: 0.98rem;
+    overflow-x: auto;
+    margin-bottom: 0.5rem;
 }
 
 .rule-content pre {
     margin: 0;
+    font-family: 'Fira Mono', 'Menlo', 'Consolas', monospace;
     white-space: pre-wrap;
-    word-wrap: break-word;
-    font-family: 'SF Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
+    word-break: break-all;
 }
 
 .copy-btn {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background-color: var(--accent-color);
-    color: white;
+    align-self: flex-end;
+    background: #0070f3;
+    color: #fff;
     border: none;
-    padding: 8px 12px;
     border-radius: 5px;
+    padding: 0.4rem 1.1rem;
+    font-size: 0.98rem;
     cursor: pointer;
-    font-weight: 500;
-    transition: background-color 0.2s;
+    margin-top: 0.5rem;
+    transition: background 0.2s;
 }
 
-.copy-btn:hover {
-    background-color: #0056b3;
-}
-
-.copy-btn.copied {
-    background-color: #28a745;
+.copy-btn:hover, .copy-btn.copied {
+    background: #0056b3;
 }
 
 footer {
     text-align: center;
-    padding: 20px 0;
-    margin-top: 40px;
-    border-top: 1px solid #e0e0e0;
     color: #888;
+    font-size: 0.95rem;
+    margin: 2rem 0 1rem 0;
 } 
